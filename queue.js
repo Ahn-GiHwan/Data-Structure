@@ -20,9 +20,16 @@ class Queue {
     return toDequeue;
   }
 
-  front() {}
+  front() {
+    console.log(`queue[front]: ${this.items[0]}`);
+    return this.items[0];
+  }
 
-  isEmpty() {}
+  isEmpty() {
+    let result = this.count === 0;
+    console.log(result);
+    return result;
+  }
 
   siez() {}
 
@@ -33,6 +40,14 @@ class Queue {
 
 const queue = new Queue();
 
-queue.enqueue("Java");
+queue.isEmpty();
+
+queue.enqueue("java");
 queue.enqueue("Script");
 queue.dequeue();
+
+queue.enqueue("script");
+queue.enqueue("Awesome");
+
+queue.front();
+queue.isEmpty();
