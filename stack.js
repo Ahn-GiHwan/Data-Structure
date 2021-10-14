@@ -12,7 +12,7 @@ class Stack {
   }
 
   pop() {
-    if (this.count == 0) return undefined;
+    if (this.count === 0) return undefined;
 
     let toRemove = this.items[this.count - 1];
     this.count--;
@@ -20,13 +20,26 @@ class Stack {
     return toRemove;
   }
 
-  peek() {}
-  isEmpty() {}
+  peek() {
+    console.log(
+      `stack[peek> ${this.count - 1}]: ${this.items[this.count - 1]}`
+    );
+    return this.items[this.count - 1];
+  }
+
+  isEmpty() {
+    console.log(this.count === 0);
+    return this.count === 0;
+  }
+
   size() {}
+
   clear() {}
 }
 
 const stack = new Stack();
+
+stack.isEmpty();
 
 stack.push("apple");
 stack.push("banana");
@@ -35,3 +48,8 @@ stack.push("coconut");
 stack.pop();
 stack.pop();
 
+stack.isEmpty();
+stack.peek();
+
+stack.push("banana");
+stack.peek();
