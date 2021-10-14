@@ -1,12 +1,36 @@
-class Queue {
+class QueueElement {
+  constructor(element, priority) {
+    this.element = element;
+    this.priority = priority;
+  }
+}
+
+class PriorityQueue {
   constructor() {
     this.items = [];
     this.count = 0;
   }
 
-  enqueue(element) {
-    this.items[this.count] = element;
-    console.log(`queue[${this.count}]: ${element} enqueued`);
+  enqueue(element, priority) {
+    const qElement = new QueueElement(element, priority);
+    let isEnqueue = false;
+
+    for (let i = 0; i < this.count; i++) {
+      if (this.items[i].priority > qElement.priority) {
+        this.items.splice(i, 0, qElement);
+        isEnqueue = true;
+        console.log(
+          `pQueue[${i}]: ${element} enqueued in front of ${
+            this.items[i + 1].element
+          }`
+        );
+        break;
+      }
+    }
+    if (!isEnqueue) {
+      this.items[this.count] = qElement;
+      console.log(`queue[${this.count}]: ${element} enqueued`);
+    }
     this.count++;
     return this.count - 1;
   }
@@ -21,7 +45,7 @@ class Queue {
   }
 
   front() {
-    console.log(`queue[front]: ${this.items[0]}`);
+    console.log(`queue[front]: ${this.items[0].element}`);
     return this.items[0];
   }
 
@@ -50,23 +74,8 @@ class Queue {
   }
 }
 
-const queue = new Queue();
+const pQueue = new PriorityQueue();
 
-queue.isEmpty();
-
-queue.enqueue("java");
-queue.enqueue("Script");
-queue.dequeue();
-
-queue.enqueue("script");
-queue.enqueue("Awesome");
-
-queue.front();
-queue.isEmpty();
-
-queue.print();
-queue.size();
-queue.clear();
-
-queue.isEmpty();
-queue.size();
+pQueue.enqueue(1, 3);
+pQueue.enqueue(2, 4);
+pQueue.enqueue(3, 2);
