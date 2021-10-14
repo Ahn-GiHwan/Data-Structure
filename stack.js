@@ -45,7 +45,8 @@ class Stack {
   }
 
   clear() {
-    this.items = [];
+    // this.items = [];
+    this.items.splice(0, this.items.length);
     this.count = 0;
     console.log("Reset Stack Complete");
     return this.items;
