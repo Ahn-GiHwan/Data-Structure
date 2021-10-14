@@ -13,7 +13,7 @@ class Queue {
 
   dequeue() {
     if (this.count === 0) return undefined;
-    let toDequeue = this.items[0];
+    const toDequeue = this.items[0];
     this.count--;
     this.items.shift();
     console.log(`queue[0]: ${toDequeue} has dequeued`);
@@ -26,16 +26,28 @@ class Queue {
   }
 
   isEmpty() {
-    let result = this.count === 0;
+    const result = this.count === 0;
     console.log(result);
     return result;
   }
 
-  siez() {}
+  size() {
+    console.log(`queue size: ${this.count}`);
+    return this.count;
+  }
 
-  print() {}
+  print() {
+    const toPrint = this.items.toString();
+    console.log(`${toPrint}`);
+    return toPrint;
+  }
 
-  clear() {}
+  clear() {
+    this.items.splice(0, this.count);
+    this.count = 0;
+    console.log("Reset queue complete");
+    return this.items;
+  }
 }
 
 const queue = new Queue();
@@ -51,3 +63,10 @@ queue.enqueue("Awesome");
 
 queue.front();
 queue.isEmpty();
+
+queue.print();
+queue.size();
+queue.clear();
+
+queue.isEmpty();
+queue.size();
