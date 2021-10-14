@@ -32,9 +32,24 @@ class Stack {
     return this.count === 0;
   }
 
-  size() {}
+  size() {
+    console.log(`Stack size: ${this.count}`);
+    return this.count;
+  }
 
-  clear() {}
+  print() {
+    const printStack = this.items.toString();
+
+    console.log(`${printStack}`);
+    return printStack;
+  }
+
+  clear() {
+    this.items = [];
+    this.count = 0;
+    console.log("Reset Stack Complete");
+    return this.items;
+  }
 }
 
 const stack = new Stack();
@@ -53,3 +68,10 @@ stack.peek();
 
 stack.push("banana");
 stack.peek();
+
+stack.size();
+stack.print();
+
+stack.clear();
+stack.size();
+stack.print();
