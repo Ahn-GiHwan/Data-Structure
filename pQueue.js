@@ -27,17 +27,19 @@ class PriorityQueue {
         break;
       }
     }
+
     if (!isEnqueue) {
       this.items[this.count] = qElement;
       console.log(`queue[${this.count}]: ${element} enqueued`);
     }
+
     this.count++;
     return this.count - 1;
   }
 
   dequeue() {
     if (this.count === 0) return undefined;
-    const toDequeue = this.items[0];
+    const toDequeue = this.items[0].element;
     this.count--;
     this.items.shift();
     console.log(`queue[0]: ${toDequeue} has dequeued`);
@@ -61,9 +63,10 @@ class PriorityQueue {
   }
 
   print() {
-    const toPrint = this.items.toString();
-    console.log(`${toPrint}`);
-    return toPrint;
+    for (const item of this.items) {
+      console.log(item.element, item.priority);
+    }
+    return undefined;
   }
 
   clear() {
@@ -79,3 +82,10 @@ const pQueue = new PriorityQueue();
 pQueue.enqueue(1, 3);
 pQueue.enqueue(2, 4);
 pQueue.enqueue(3, 2);
+
+pQueue.print();
+
+pQueue.dequeue();
+pQueue.dequeue();
+
+pQueue.print();
